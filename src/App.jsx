@@ -39,7 +39,6 @@ function App() {
     content = <TaskScreen allTasks={task} onDelete={handleDeleteTask}/>
   }
 
-  console.log(task)
   return (
     <main>
       <Modal ref={modal}>
