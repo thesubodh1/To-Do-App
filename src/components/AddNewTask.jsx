@@ -11,6 +11,8 @@ export default function AddNewTask({ onCancel, onConfirm }) {
       title: taskTitle,
       id: taskId,
     });
+
+    title.current.value= "";
   }
   return (
     <div className="new-task">

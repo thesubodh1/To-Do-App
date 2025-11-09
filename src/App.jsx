@@ -6,6 +6,7 @@ import EmptyScreen from "./components/EmptyScreen";
 import AddButton from "./components/AddButton";
 import Modal from "./components/Modal";
 import AddNewTask from "./components/AddNewTask";
+import TaskScreen from "./components/TaskScreen";
 
 function App() {
   const modal = useRef();
@@ -23,6 +24,13 @@ function App() {
       setTask((previousTasks) => {
           return [...previousTasks,newTask]
       })
+      modal.current.close();
+  }
+
+  let content = <EmptyScreen/>
+
+  if (task.length !== 0){
+    content = <TaskScreen allTasks={task}/>
   }
 
   console.log(task)
@@ -32,7 +40,7 @@ function App() {
         <AddNewTask onCancel={handleCancel} onConfirm={handleConfirm}/>
       </Modal>
       <Header />
-      <EmptyScreen />
+      {content}
       <AddButton onAdd={handleAddNewTask} />
     </main>
   );
