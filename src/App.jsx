@@ -27,10 +27,16 @@ function App() {
       modal.current.close();
   }
 
+  function handleDeleteTask(id){
+    setTask((previousTasks) => {
+        return previousTasks.filter((tasks) => tasks.id !== id )
+    })
+  }
+
   let content = <EmptyScreen/>
 
   if (task.length !== 0){
-    content = <TaskScreen allTasks={task}/>
+    content = <TaskScreen allTasks={task} onDelete={handleDeleteTask}/>
   }
 
   console.log(task)

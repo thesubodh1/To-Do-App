@@ -138,6 +138,9 @@
 .tasks{
     border-bottom: 1px solid #ccc;
     padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .tasks-btn{
@@ -147,4 +150,28 @@
   border: none;
 }
 
+.action-btn{
+  gap: 1.2rem;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
 
+.tasks:hover .action-btn{
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.icon-btn{
+  outline: none;
+  border: none;
+  background: none;
+}
+
+.icon{
+  height: 2rem;
+  width: 2rem;
+  color: #ccc;
+}

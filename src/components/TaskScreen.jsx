@@ -1,9 +1,13 @@
-export default function TaskScreen({allTasks}){
+export default function TaskScreen({allTasks,onDelete}){
     return(
         <ul className="task-lists">
             {allTasks.map((task) => (
                 <li key={task.id} className="tasks">
-                    <button className="tasks-btn">{task.title}</button>
+                    <span className="tasks-btn">{task.title}</span>
+                    <div className="action-btn">
+                        <button className="icon-btn" onClick={() => onDelete(task.id)}><ion-icon name="trash-outline" className="icon"></ion-icon></button>
+                        <button className="icon-btn"><ion-icon name="create-outline" className="icon"></ion-icon></button>
+                    </div>
                 </li>
             ))}
         </ul>
