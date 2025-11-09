@@ -1,4 +1,4 @@
-import { useState,useRef } from "react";
+import { useState, useRef } from "react";
 
 import "./App.css";
 import Header from "./components/Header";
@@ -9,18 +9,32 @@ import AddNewTask from "./components/AddNewTask";
 
 function App() {
   const modal = useRef();
-  const [task,setTask] = useState([]);
+  const [task, setTask] = useState([]);
 
-  function handleAddNewTask(){
+  function handleAddNewTask() {
     modal.current.open();
   }
+
+  function handleCancel() {
+    modal.current.close();
+  }
+
+  function handleConfirm(newTask){
+      setTask((previousTasks) => {
+          return [...previousTasks,newTask]
+      })
+  }
+
+  console.log(task)
   return (
-    <>
-      <Modal ref={modal}><AddNewTask/></Modal>
+    <main>
+      <Modal ref={modal}>
+        <AddNewTask onCancel={handleCancel} onConfirm={handleConfirm}/>
+      </Modal>
       <Header />
-      {task.length == 0 ? <EmptyScreen /> : "New Tasks"}
-      <AddButton onAdd={handleAddNewTask}/>
-    </>
+      <EmptyScreen />
+      <AddButton onAdd={handleAddNewTask} />
+    </main>
   );
 }
 
