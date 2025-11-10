@@ -38,9 +38,9 @@ export default function Task({ task, onEdit, onDelete }) {
       ) : (
         <div className="edit-container">
           <input type="text" value={editingTitle} onChange={handleChange} onKeyDown={handleKeyPress} autoFocus/>
-          <div className="action-btn">
-            <button onClick={handleSave}>Save</button>
-            <button onClick={handleCancel}>Cancel</button>
+          <div className="edit-action-btn">
+            <button onClick={handleSave} className="edit-btn btn--save">Save</button>
+            <button onClick={handleCancel} className="edit-btn btn--cancel">Cancel</button>
           </div>
         </div>
       )}

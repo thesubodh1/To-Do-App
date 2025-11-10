@@ -82,7 +82,7 @@
   margin-bottom: 3rem;
 }
 
-.new-task input {
+.new-task input{
   background: none;
   border-radius: 0.2rem;
   border: 1px solid #6692f1;
@@ -174,4 +174,50 @@
   height: 2rem;
   width: 2rem;
   color: #ccc;
+}
+
+/* edit screen */
+.edit-container{
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.edit-container input{
+  width: 100%;
+  padding: 1.2rem;
+  outline: none;
+  border: none;
+  font-size: 2rem;
+}
+
+
+.edit-container input:focus, .edit-container input:active {
+  border: none;
+  outline: none;
+}
+
+.edit-action-btn{
+  display: flex;
+  gap: 1.2rem;
+}
+
+.edit-btn{
+  padding: 0.4rem 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+  border-radius: 0.8rem;
+}
+
+.btn--save{
+  background-color: #00cc00;
+  color: #fff;
+
+}
+
+.btn--cancel{
+  color: #000;
+  border: 1px solid #2563eb;
 }
