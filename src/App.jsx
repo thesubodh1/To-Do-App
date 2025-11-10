@@ -7,12 +7,18 @@ import AddButton from "./components/AddButton";
 import Modal from "./components/Modal";
 import AddNewTask from "./components/AddNewTask";
 import TaskScreen from "./components/TaskScreen";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   const modal = useRef();
   const [task, setTask] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   console.log(task);
   // console.log(task.find((task) =>task.id == 0.9067075422915349).title)
+
+  const filterdTasks = task.filter((taskItem) =>
+    taskItem.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   function handleAddNewTask() {
     modal.current.open();
@@ -43,15 +49,22 @@ function App() {
     });
   }
 
+  function handleSearch(term) {
+    setSearchTerm(term);
+  }
+
   let content = <EmptyScreen />;
 
   if (task.length !== 0) {
     content = (
-      <TaskScreen
-        allTasks={task}
-        onDelete={handleDeleteTask}
-        onEdit={handleEdit}
-      />
+      <>
+        <SearchBar onSearch={handleSearch} />
+        <TaskScreen
+          allTasks={filterdTasks}
+          onDelete={handleDeleteTask}
+          onEdit={handleEdit}
+        />
+      </>
     );
   }
 
