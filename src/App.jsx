@@ -8,10 +8,10 @@ import Modal from "./components/Modal";
 import AddNewTask from "./components/AddNewTask";
 import TaskScreen from "./components/TaskScreen";
 import SearchBar from "./components/SearchBar";
-
 function App() {
+  const storedTasks = JSON.parse(localStorage.getItem("addedTasks")) || [];
   const modal = useRef();
-  const [task, setTask] = useState([]);
+  const [task, setTask] = useState(storedTasks);
   const [searchTerm, setSearchTerm] = useState("");
   console.log(task);
   // console.log(task.find((task) =>task.id == 0.9067075422915349).title)
@@ -30,14 +30,22 @@ function App() {
 
   function handleConfirm(newTask) {
     setTask((previousTasks) => {
-      return [...previousTasks, newTask];
+      return [newTask,...previousTasks];
     });
     modal.current.close();
+
+    localStorage.setItem(
+      "addedTasks",
+      JSON.stringify([newTask, ...storedTasks])
+    );
   }
 
   function handleDeleteTask(id) {
     setTask((previousTasks) => {
-      return previousTasks.filter((tasks) => tasks.id !== id);
+      const updatedTask = previousTasks.filter((task) => task.id !== id);
+
+      localStorage.setItem("addedTasks", JSON.stringify(updatedTask));
+      return updatedTask;
     });
   }
 
